@@ -12,7 +12,7 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
 # MongoDB Config
-MONGO_URI = "mongodb://admin:pass123@localhost:27017/?authSource=admin"
+MONGO_URI = "mongodb+srv://danielbaker06072001:GenAI2025Team@genai2025.tjoog.mongodb.net/?retryWrites=true&w=majority&appName=genai2025"
 mongo_client = AsyncIOMotorClient(MONGO_URI)
 mongodb = mongo_client["genai"]
 
