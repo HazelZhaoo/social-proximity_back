@@ -7,3 +7,4 @@ typing
 psycopg2
 asyncio
 motor
+uvicorn
