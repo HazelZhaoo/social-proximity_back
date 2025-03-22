@@ -1,14 +1,7 @@
-from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
-
 from motor.motor_asyncio import AsyncIOMotorClient
 
-# PostgreSQL Config
-# DATABASE_URL = "postgresql://postgres:Cel-365.@localhost:5432/postgres"
-
-# engine = create_engine(DATABASE_URL)
-# SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+# Keep declarative_base for models
 Base = declarative_base()
 
 # MongoDB Config
@@ -16,18 +9,7 @@ MONGO_URI = "mongodb+srv://danielbaker06072001:GenAI2025Team@genai2025.tjoog.mon
 mongo_client = AsyncIOMotorClient(MONGO_URI)
 mongodb = mongo_client["genai"]
 
-
-def get_db():
-    return
-
-
-#     db = SessionLocal()
-#     try:
-#         yield db
-#     finally:
-#         db.close()
-
-
+# Remove the empty get_db function since we're not using PostgreSQL
 # Dependency for MongoDB
 async def get_mongo_db():
     yield mongodb

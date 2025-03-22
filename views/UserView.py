@@ -1,26 +1,22 @@
 from fastapi import APIRouter, HTTPException, Depends, status
-from sqlalchemy.orm import Session
 from controllers.UserController import get_all_users
-from models.Database import get_db, get_mongo_db
+from models.Database import get_mongo_db
 from motor.motor_asyncio import AsyncIOMotorDatabase
 from models.UserModel import UserCreateRequest, UserCreateResponse
 from models.Common import CommonResponse
 
-router = APIRouter()
-
+router = APIRouter(prefix="/api")
 
 @router.get("/users")
 async def get_all(
-    # db: Session = Depends(get_db),
-    mongo_db: AsyncIOMotorDatabase = Depends(get_mongo_db),
+    mongo_db: AsyncIOMotorDatabase = Depends(get_mongo_db)
 ):
-    return await get_all_users(db, mongo_db)
-
+    # Removed db parameter since it's not being used
+    return await get_all_users(mongo_db)
 
 @router.post("/users")
 async def create_user(
     user: UserCreateRequest,
-    # db: Session = Depends(get_db),
     mongo_db: AsyncIOMotorDatabase = Depends(get_mongo_db),
 ):
     print(user)
@@ -43,5 +39,5 @@ async def create_user(
     return CommonResponse[UserCreateResponse](
         Status="Success",
         ErrorMessage="",
-        Data=[userCreateResponse],  # Optional: You may want a response model for this
+        Data=[userCreateResponse],
     )
