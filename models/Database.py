@@ -5,10 +5,10 @@ from sqlalchemy.orm import sessionmaker
 from motor.motor_asyncio import AsyncIOMotorClient
 
 # PostgreSQL Config
-DATABASE_URL = "postgresql://postgres:Cel-365.@localhost:5432/postgres"
+# DATABASE_URL = "postgresql://postgres:Cel-365.@localhost:5432/postgres"
 
-engine = create_engine(DATABASE_URL)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+# engine = create_engine(DATABASE_URL)
+# SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
 # MongoDB Config
@@ -18,11 +18,14 @@ mongodb = mongo_client["genai"]
 
 
 def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+    return
+
+
+#     db = SessionLocal()
+#     try:
+#         yield db
+#     finally:
+#         db.close()
 
 
 # Dependency for MongoDB
